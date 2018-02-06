@@ -13,7 +13,6 @@
 # OS or Editor folders
 .DS_Store
 Thumbs.db
-config.js
 api-keys.js
 .cache
 .project
