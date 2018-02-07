@@ -1,4 +1,5 @@
-profitLimit = 1.12
-stopLossLimit = 0.9
+profitLimit = 1.05
+stopLossLimit = 0
 buyAtDrop = 0.98
 buyAtRise = 1.01
+
