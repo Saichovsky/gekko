@@ -257,7 +257,7 @@ Trader.prototype.getOrder = function(order, callback) {
     var amount = parseFloat(data.executedQty);
 
     // Data.time is a 13 digit millisecon unix time stamp.
-    // https://momentjs.com/docs/#/parsing/unix-timestamp-milliseconds/ 
+    // https://momentjs.com/docs/#/parsing/unix-timestamp-milliseconds/
     var date = moment(data.time);
 
     callback(undefined, { price, amount, date });

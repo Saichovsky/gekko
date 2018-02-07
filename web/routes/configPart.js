@@ -15,6 +15,6 @@ module.exports = function *() {
 
   const fileName = gekkoRoot + '/' + parts[this.params.part] + '.toml';
   this.body = {
-    part: yield fs.readFile(fileName, 'utf8') 
+    part: yield fs.readFile(fileName, 'utf8')
   }
 }

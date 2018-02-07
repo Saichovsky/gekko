@@ -83,7 +83,7 @@ strat.check = function(candle) {
 
         if (this.trend.condition !== 'overbought')
             this.trend = {
-                duration: 0, 
+                duration: 0,
                 persisted: false,
                 condition: 'overbought',
                 advised: false

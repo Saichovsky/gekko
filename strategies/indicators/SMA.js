@@ -1,5 +1,5 @@
 // required indicators
-// Simple Moving Average - O(1) implementation 
+// Simple Moving Average - O(1) implementation
 
 var Indicator = function(windowLength) {
   this.input = 'price';

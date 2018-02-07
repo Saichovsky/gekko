@@ -93,7 +93,7 @@ Trader.prototype.getFee = function(callback) {
 
 Trader.prototype.buy = function(amount, price, callback) {
 
-  price *= this.priceDivider;  
+  price *= this.priceDivider;
   amount = Math.floor(amount * this.priceDivider);
   var id = Math.random() + '';
   var set = function(err, data) {

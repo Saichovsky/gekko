@@ -186,14 +186,14 @@ Trader.prototype.cancelOrder = function(order_id, callback) {
 }
 
 Trader.prototype.getTrades = function(since, callback, descending) {
-  let process = (err, data) => {  
+  let process = (err, data) => {
     if (err) return callback(err);
 
     var trades = _.map(data, function(trade) {
       return {
-        tid: trade.tid, 
-        date:  trade.timestamp, 
-        price: +trade.price, 
+        tid: trade.tid,
+        date:  trade.timestamp,
+        price: +trade.price,
         amount: +trade.amount
       }
     });
@@ -201,9 +201,9 @@ Trader.prototype.getTrades = function(since, callback, descending) {
     callback(undefined, descending ? trades : trades.reverse());
   };
 
-  var path = this.pair; 
-  if(since) 
-    path += '?limit_trades=2000'; 
+  var path = this.pair;
+  if(since)
+    path += '?limit_trades=2000';
 
   let handler = (cb) => this.bitfinex.trades(path, this.handleResponse('getTrades', cb));
   util.retryCustom(retryForever, _.bind(handler, this), _.bind(process, this));

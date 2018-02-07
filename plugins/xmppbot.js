@@ -15,7 +15,7 @@ var Actor = function() {
                password: xmppbot.client_pwd,
                host: xmppbot.client_host,
                port: xmppbot.client_port
-               });  
+               });
 
   this.advice = 'Dont got one yet :(';
   this.adviceTime = utc();
@@ -62,7 +62,7 @@ Actor.prototype.rawStanza = function(stanza) {
      }
 
      var message_recv = body.getText();   //Get Incoming Message
-     this.verifyQuestion(from, message_recv);	
+     this.verifyQuestion(from, message_recv);
   }
 };
 
@@ -99,7 +99,7 @@ Actor.prototype.newAdvice = function(receiver) {
   this.emitAdvice(receiver);
 }
 
-// sent advice 
+// sent advice
 Actor.prototype.emitAdvice = function(receiver) {
   var message = [
     'Advice for ',
@@ -124,7 +124,7 @@ Actor.prototype.emitAdvice = function(receiver) {
   this.sendMessageTo(receiver, message);
 };
 
-// sent price 
+// sent price
 Actor.prototype.emitPrice = function(receiver) {
 
   var message = [
@@ -146,7 +146,7 @@ Actor.prototype.emitPrice = function(receiver) {
   this.sendMessageTo(receiver, message);
 };
 
-// sent donation info 
+// sent donation info
 Actor.prototype.emitDonation = function(receiver) {
   var message = 'You want to donate? How nice of you! You can send your coins here:';
   message += '\nBTC:\t19UGvmFPfFyFhPMHu61HTMGJqXRdVcHAj3';

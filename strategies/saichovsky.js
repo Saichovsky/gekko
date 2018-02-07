@@ -1,85 +1,112 @@
-// helpers
+// fork of buyatsellat with trailing stop loss
 // var _ = require('lodash');
+var helper = require('../helper.js');
 var log = require('../core/log.js');
 
 var config = require('../core/util.js').getConfig();
-var settings = config.buyatsellat_ui;
+var settings = config.saichovsky;
 
-// let's create our own method
-var method = {};
+// let's create our own strategy
+var strategy = {};
 
-// prepare everything our method needs
-  method.init = function() {
+// prepare everything our strategy needs
+strategy.init = function() {
   this.name = 'saichovsky';
+  this.stopLoss = helper.trailingStopLoss(); // provides some methods
+  this.stopPrice = Infinity;
+  this.buyPrice = null;
 
   this.previousAction = 'sell';
   this.previousActionPrice = Infinity;
-
-  this.threShold = 0.0;
-  this.stopLoss = 0.0;
-  this.sellatUpPrice = 0.0;
 }
 
 // What happens on every new candle?
-method.update = function(candle) {
-  //log.debug('in update');
-
-  // price has gone up and we need to sell. Push up threshold and stop loss amounts
-  if(this.previousAction === "buy") && (candle.close > this.previousActionPrice) {
-    this.threShold = candle.close * buyat;
-    this.stopLoss = this.threShold * settings.stop_loss_pct;
-  }
-  // price has gone down and we need to buy. Push down buying price
-  else if(this.previousAction === "sell") && (candle.close < this.previousActionPrice) {
-    this.threShold = candle.close * settings.sellat;
-    this.sellatUpPrice = this.threShold * settings.settings.sellat_up;
-  }
+strategy.update = function(candle) {
+  this.stopPrice = this.stopLoss.update(candle.close);
 }
 
 // for debugging purposes log the last
 // calculated parameters.
-method.log = function(candle) {
+strategy.log = function(candle) {
   //log.debug(this.previousAction)
 }
 
-// update whatever info
-method.check = function(candle) {
-  const buyat = settings.buyat; // amount of percentage of difference required
-  const sellat = settings.sellat; // amount of percentage of difference required
-  const stop_loss_pct = settings.stop_loss_pct; // amount of stop loss percentage
-  const sellat_up = settings.sellat_up; // amount of percentage from last buy if market goes up
+strategy.check = function(candle) { // this is where we decide on what to do - buy or sell
+  if(this.stopLoss.active()) { // if LastAction was a buy
+    if (this.stopLoss.triggered(candle.close) ) { // and SL has been triggered
+      this.advice('short'); // sell
+      this.advised = false;
+      this.stopLoss.destroy();
+      log.info("{\"SellPrice\": \"" + this.stopPrice.toFixed(4) + "\", \"Action\": \"" + this.previousAction[0].toUpperCase() + this.previousAction.substring(1) + "\", \"PreviousPrice\": \"" + candle.close.toFixed(4) + "\", \"StopLoss\": \"" + settings.stopLossLimit + "\"}");
+    }
+    else { // SL not triggered. Update stopLoss
+      this.stopPrice = this.stopLoss.update(candle.close);
+      log.info("{\"SellPrice\": \"" + this.stopPrice.toFixed(4) + "\", \"Action\": \"Trail\", \"PreviousPrice\": \"" + candle.close.toFixed(4) + "\", \"StopLoss\": \"" + settings.stopLossLimit + "\"}");
+    }
+  }
+  else { // last action was a sell
+    const stopLossLimit = settings.stopLossLimit; // stop loss percentage
+    const buyAtDrop = settings.buyAtDrop; // % of last sale price to buy at if market goes down
+    const buyAtRise = settings.buyAtRise; // % of last sale price to buy at if market goes up
+
+    // calculate the minimum price in order to buy
+    const lower_buy_price = this.previousActionPrice * buyAtDrop;
+
+    // calculate the price at which we should buy again if market goes up
+    const upper_buy_price = this.previousActionPrice * buyAtRise;
+
+    // we buy if the price is less than the required threshold or greater than Market Up threshold
+    if((candle.close < lower_buy_price) || (candle.close > upper_buy_price)) {
+      this.advice('long');
+      this.stopLoss.create(stopLossLimit, candle.close);
+      this.previousAction = 'buy';
+      this.previousActionPrice = candle.close;
+      log.info("{\"SellPrice\": \"" + this.stopPrice.toFixed(4) + "\", \"Action\": \"" + this.previousAction[0].toUpperCase() + this.previousAction.substring(1) + "\", \"PreviousPrice\": \"" + candle.close.toFixed(4) + "\", \"StopLoss\": \"" + settings.stopLossLimit + "\"}");
+    }
+  }
+}
+
+/*  const profitLimit = settings.profitLimit; // percentage above buying price at which to sell
+  const stopLossLimit = settings.stopLossLimit; // stop loss percentage
+  const buyAtDrop = settings.buyAtDrop; // % of last sale price to buy at if market goes down
+  const buyAtRise = settings.buyAtRise; // % of last sale price to buy at if market goes up
 
   if(this.previousAction === "buy") {
     // calculate the minimum price in order to sell
-    const threshold = this.threShold * buyat;
+    var threshold = this.previousActionPrice * profitLimit;
 
     // calculate the stop loss price in order to sell
-    const stop_loss = this.threShold * stop_loss_pct;
+    const stop_loss = this.previousActionPrice * stopLossLimit;
 
-    // we sell if the price is more than the required threshold or equals stop loss threshold
-    if((candle.close < this.threShold) || (candle.close <= this.stopLoss)) {
+    // we sell if the price is less than  or = stop loss threshold
+    if(candle.close < stop_loss) {
       this.advice('short');
+      this.stopLoss.destroy();
       this.previousAction = 'sell';
       this.previousActionPrice = candle.close;
+      log.info("{\"ProfitMargin\": \"" + profitLimit + "\", \"Action\": \"" + this.previousAction[0].toUpperCase() + this.previousAction.substring(1) + "\", \"PreviousPrice\": \"" + candle.close + "\", \"StopLoss\": \"" + stopLossLimit + "\"}");
+    } else { // item is uptrending
+      threshold
     }
   }
-  
-  //nilifika hapa
 
   else if(this.previousAction === "sell") {
-  // calculate the minimum price in order to buy
-    const threshold = this.previousActionPrice * sellat;
+    // calculate the minimum price in order to buy
+    //const threshold = this.stopLoss.triggered(candle.close) ? this.previousActionPrice * buyAtDrop : this.previousActionPrice * buyAtRise;
+    const threshold = this.previousActionPrice * buyAtDrop;
 
-  // calculate the price at which we should buy again if market goes up
-    const sellat_up_price = this.previousActionPrice * sellat_up;
+    // calculate the price at which we should buy again if market goes up
+    const sellat_up_price = this.previousActionPrice * buyAtRise;
 
     // we buy if the price is less than the required threshold or greater than Market Up threshold
     if((candle.close < threshold) || (candle.close > sellat_up_price)) {
       this.advice('long');
+      this.stopLoss.create(profitLimit, candle.close);
       this.previousAction = 'buy';
       this.previousActionPrice = candle.close;
+      //log.debug(this.previousAction + "ing at " +this.previousActionPrice);
     }
   }
-}
+}*/
 
-module.exports = method;
+module.exports = strategy;

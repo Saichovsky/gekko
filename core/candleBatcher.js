@@ -6,7 +6,7 @@
 // Acts as ~fake~ stream: takes
 // 1m candles as input and emits
 // bigger candles.
-// 
+//
 // input are transported candles.
 
 var _ = require('lodash');
