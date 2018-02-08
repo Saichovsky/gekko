@@ -64,15 +64,13 @@ strategy.check = function(candle) { // this is where we decide on what to do - b
     if ((this.stopLoss.triggered(candle.close)) || (timeToSell(this) ) && (candle.close > this.profitLimit)) { // and SL has been triggered or price < profitLimit
       this.advice('short'); // sell
       this.previousAction = 'sell';
+      this.previousActionPrice = candle.close;
       this.advised = false;
       //log.info("stopLossTriggered?: " + this.stopLoss.triggered(candle.close));
       //log.info("{\"Action\": \"" + this.previousAction[0].toUpperCase() + this.previousAction.substring(1) + "\", \"StopPrice\": \"" + this.stopPrice.toFixed(4) + "\", \"PreviousPrice\": \"" + candle.close.toFixed(4) + "\", \"ProfitLimit\": \"" + this.profitLimit.toFixed(4) + ", \"newLimit\": \"" + this.pLimits[0].toFixed(4) + "\"}");
-    try{
+      this.pLimits[1] = (this.pLimits.length < 2) ? 0 : this.pLimits[1];
       log.info(this.previousAction[0].toUpperCase() + this.previousAction.substring(1) + "," + this.stopPrice.toFixed(4) + "," + candle.close.toFixed(4) + "," + this.profitLimit.toFixed(4) + "," + this.pLimits[0].toFixed(4) + "," + this.pLimits[1].toFixed(4));
-    }
-    catch(e) {
-      //
-    }
+
       this.stopLoss.destroy();
     } 
   }
