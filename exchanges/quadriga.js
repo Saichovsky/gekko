@@ -16,7 +16,7 @@ var Trader = function(config) {
     this.currency = config.currency.toLowerCase();
   }
 
-  this.pair = this.asset + '_' + this.currency; 
+  this.pair = this.asset + '_' + this.currency;
   this.name = 'quadriga';
   this.since = null;
 

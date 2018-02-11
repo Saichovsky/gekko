@@ -1,6 +1,6 @@
-// 
+//
 // The market data provider will fetch data from a datasource on tick. It emits:
-// 
+//
 // - `trades`: batch of newly detected trades
 // - `trade`: after Gekko fetched new trades, this
 //   will be the most recent one.

@@ -43,7 +43,7 @@ module.exports = done => {
         _.each(tables, table => {
           let parts = table.name.split('_');
           let first = parts.shift();
-          if(first === 'candles') 
+          if(first === 'candles')
             markets.push({
               exchange: exchange,
               currency: _.first(parts),

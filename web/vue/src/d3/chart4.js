@@ -177,7 +177,7 @@ export default function(_data, _trades, _height) {
     if (d3.event.sourceEvent && d3.event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
     var t = d3.event.transform;
 
-    scaleY(t.rescaleX(x2).domain());    
+    scaleY(t.rescaleX(x2).domain());
 
     svg.select(".axis--y")
       .call(yAxis);

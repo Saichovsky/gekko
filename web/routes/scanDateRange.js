@@ -5,7 +5,7 @@ const scan = promisify(require('../../core/workers/dateRangeScan/parent'));
 
 // starts a scan
 // requires a post body with configuration of:
-// 
+//
 // - config.watch
 const route = function *() {
 

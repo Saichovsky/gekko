@@ -59,7 +59,7 @@ var processCandle = function processCandle (candle, done) {
   this.marketTime = candle.start;
 
   this.candleCache.push(candle);
-  if (this.candleCache.length > 100) 
+  if (this.candleCache.length > 100)
     this.writeCandles();
   done();
 }

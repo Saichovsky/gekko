@@ -124,7 +124,7 @@ TrainIA = function(){
 }
 method.check = function() {
     this.stochK = this.tulipIndicators.stoch.result.sotchK;
-    this.stochD = this.tulipIndicators.stoch.result.stochD; 
+    this.stochD = this.tulipIndicators.stoch.result.stochD;
 
           //Learn
           var predict = function(data) {
@@ -132,7 +132,7 @@ method.check = function() {
             var predicted_value = neural.net.forward(x);
             return predicted_value.w[0];
           }
-        //   if(hasbought) { 
+        //   if(hasbought) {
 
         //     log.debug(lastdvalue);
 
@@ -159,7 +159,7 @@ method.check = function() {
             var percentvar = (meanp-mean)/mean * 100;
                 global.sig0 = global.meanp < global.mean
                 if (
-                   global.sig0 === false && hasbought == false 
+                   global.sig0 === false && hasbought == false
                 //    this.stochD > this.stochK && this.stochD < 20
                    )
                    {

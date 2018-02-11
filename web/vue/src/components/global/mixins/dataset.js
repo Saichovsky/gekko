@@ -6,7 +6,7 @@ var mixin = {
       datasets: [],
       datasetScanstate: 'idle',
       unscannableMakets: []
-    }    
+    }
   },
   methods: {
     scan: function() {

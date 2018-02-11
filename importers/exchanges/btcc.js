@@ -52,7 +52,7 @@ var fetch = () => {
     fetcher.getTrades(iterator, false, handleFetch);
 }
 
-// we use the first fetch to figure out 
+// we use the first fetch to figure out
 // the tid of the moment we want data from
 var handleFirstFetch = trades => {
   iterator = _.first(trades).tid;

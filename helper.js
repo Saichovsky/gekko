@@ -17,7 +17,8 @@ exports.trailingStopLoss = function() {
     }
 
     function calculateStopLoss(currentPrice) {
-        return (((100 - _percentage)) / 100) * currentPrice;
+        //return (((100 - _percentage)) / 100) * currentPrice;
+        return (_percentage * currentPrice);
     };
 
     function resetSettings() {
@@ -30,14 +31,7 @@ exports.trailingStopLoss = function() {
     }
 
     function printVariables() {
-        console.log(`
-        -----------------------------
-        Percent: ${_percentage}
-        Previous Price: ${_prevPrice}
-        Stop Loss: ${_stopLoss}
-        State: ${_isActive}
-        ----------------------------;
-        `)
+        console.log(`{"Percent": "${_percentage}", "PreviousPrice": "${_prevPrice}", "StopLoss": "${_stopLoss}", "isActive": "${_isActive}"}`)
     };
 
     return {

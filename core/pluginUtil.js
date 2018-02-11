@@ -55,7 +55,7 @@ var pluginHelper = {
     return error;
   },
   // loads a plugin
-  // 
+  //
   // @param Object plugin
   //    plugin config object
   // @param Function next
@@ -100,7 +100,7 @@ var pluginHelper = {
       var instance = new Constructor(plugin);
       instance.meta = plugin;
       _.defer(function() {
-        next(null, instance); 
+        next(null, instance);
       });
     }
 

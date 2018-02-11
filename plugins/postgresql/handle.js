@@ -43,7 +43,7 @@ checkClient.connect(function(err){
     util.die(err);
   }
   log.debug("Check database exists: "+dbName);
-  query = checkClient.query("select count(*) from pg_catalog.pg_database where datname = $1",[dbName], 
+  query = checkClient.query("select count(*) from pg_catalog.pg_database where datname = $1",[dbName],
     (err, res) => {
       if(err) {
         util.die(err);
@@ -78,7 +78,7 @@ checkClient.connect(function(err){
           }
           log.debug("Postgres connected to "+dbName);
         });
-      }  
+      }
     });
 });
 

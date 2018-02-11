@@ -69,7 +69,7 @@ Twitter.prototype.mail = function(content, done) {
       } else if(response && response.active){
           log.info('Pushbullet Message Sent')
       }
-    }); 
+    });
 };
 
 Twitter.prototype.checkResults = function(err) {

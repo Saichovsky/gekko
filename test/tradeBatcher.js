@@ -98,9 +98,9 @@ describe('budfox/tradeBatcher', function() {
     expect(tbResult.data.length).to.equal(result.data.length);
 
     _.each(tbResult.data, function(t, i) {
-      expect(tbResult.data[i].tid).to.equal(result.data[i].tid);      
-      expect(tbResult.data[i].price).to.equal(result.data[i].price);      
-      expect(tbResult.data[i].amount).to.equal(result.data[i].amount);      
+      expect(tbResult.data[i].tid).to.equal(result.data[i].tid);
+      expect(tbResult.data[i].price).to.equal(result.data[i].price);
+      expect(tbResult.data[i].amount).to.equal(result.data[i].amount);
     });
   });
 
@@ -134,6 +134,6 @@ describe('budfox/tradeBatcher', function() {
     tb.write(empty_trades);
 
     expect(spy.callCount).to.equal(0);
-  }); 
+  });
 
 });

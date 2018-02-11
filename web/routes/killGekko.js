@@ -28,7 +28,7 @@ module.exports = function *() {
     this.body = {
       status: 'not ok'
     }
-    return; 
+    return;
   }
 
   broadcast({

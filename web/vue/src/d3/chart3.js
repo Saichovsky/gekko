@@ -47,7 +47,7 @@ export default function(_data, _trades) {
             .attr("x", 0)
             .attr("y", y(1))
             .attr("width", width)
-            .attr("height", y(0) - y(1)); 
+            .attr("height", y(0) - y(1));
 
     svg.append("g")
         .attr("class", "candlestick")

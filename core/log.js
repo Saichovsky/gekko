@@ -66,7 +66,7 @@ Log.prototype = {
 
 if(debug)
   Log.prototype.debug = function() {
-    this._write('info', arguments, 'DEBUG');  
+    this._write('info', arguments, 'DEBUG');
   }
 else
   Log.prototype.debug = _.noop;

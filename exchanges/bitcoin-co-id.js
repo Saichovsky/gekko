@@ -132,7 +132,7 @@ Trader.prototype.getFee = function(callback) {
 Trader.prototype.buy = function(amount, price, callback) {
   this.type = 'buy';
 
-  // decrease purchase by 1% to avoid trying to buy more than balance 
+  // decrease purchase by 1% to avoid trying to buy more than balance
   amount -= amount / 100;
   amount = this.roundAmount(amount);
 

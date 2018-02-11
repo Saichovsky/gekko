@@ -73,7 +73,7 @@ var Market = function() {
   this.candleManager.on(
     'candles',
     this.pushCandles
-  );  
+  );
 
   Readable.call(this, {objectMode: true});
 

@@ -1,6 +1,6 @@
 /*
 
-  A pipeline implements a full Gekko Flow based on a config and 
+  A pipeline implements a full Gekko Flow based on a config and
   a mode. The mode is an abstraction that tells Gekko what market
   to load (realtime, backtesting or importing) while making sure
   all enabled plugins are actually supported by that market.

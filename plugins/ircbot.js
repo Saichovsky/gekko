@@ -11,7 +11,7 @@ var Actor = function() {
   _.bindAll(this);
 
   this.bot = new irc.Client(ircbot.server, ircbot.botName, {
-    channels: [ ircbot.channel ] 
+    channels: [ ircbot.channel ]
   });
 
   this.bot.addListener("message", this.verifyQuestion);

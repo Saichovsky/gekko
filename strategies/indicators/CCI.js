@@ -20,7 +20,7 @@ var Indicator = function(settings) {
 
 Indicator.prototype.update = function(candle) {
 
-  // We need sufficient history to get the right result. 
+  // We need sufficient history to get the right result.
 
   var tp = (candle.high + candle.close + candle.low) / 3;
   if (this.size < this.maxSize) {
