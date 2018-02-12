@@ -86,7 +86,7 @@ strategy.check = function(candle) { // this is where we decide on what to do - b
     const upper_buy_price = this.previousActionPrice * buyAtRise;
 
     // we buy if the price is less than the required threshold or greater than Market Up threshold
-    if((candle.close < lower_buy_price) || (candle.close > upper_buy_price)) {
+    if((candle.close <= lower_buy_price) || (candle.close >= upper_buy_price)) {
       this.advice('long');
       this.previousAction = 'buy';
       this.previousActionPrice = candle.close;
