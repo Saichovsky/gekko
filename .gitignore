@@ -41,7 +41,6 @@ candles.csv
 cexio.db
 TMP_*
 history
-history/*
 saichovsky2.js
 .idea
 volumes
