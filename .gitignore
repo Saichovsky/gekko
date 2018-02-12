@@ -39,8 +39,10 @@ dwsync.xml
 node_modules
 candles.csv
 cexio.db
-history
 TMP_*
+history
+history/*
+saichovsky2.js
 .idea
 volumes
 config-*.js
