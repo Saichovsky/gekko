@@ -36,6 +36,7 @@
     "gekko": "0.0.9",
     "gemini-exchange-coffee-api": "2.0.6",
     "humanize-duration": "^3.10.0",
+    "jshint": "^2.9.5",
     "koa": "^1.2.0",
     "koa-bodyparser": "^2.2.0",
     "koa-cors": "0.0.16",
