@@ -16,9 +16,9 @@ config.debug = true; // for additional logging / debugging
 config.watch = {
 
   // see https://gekko.wizb.it/docs/introduction/supported_exchanges.html
-  exchange: 'poloniex',
-  currency: 'USDT',
-  asset: 'BTC',
+  exchange: 'binance',
+  currency: 'ETH',
+  asset: 'LTC',
 
   // You can set your own tickrate (refresh rate).
   // If you don't set it, the defaults are 2 sec for
@@ -234,10 +234,10 @@ config.pushover = {
 
 // want Gekko to send a mail on buy or sell advice?
 config.mailer = {
-  enabled: false,       // Send Emails if true, false to turn off
+  enabled: true,       // Send Emails if true, false to turn off
   sendMailOnStart: true,    // Send 'Gekko starting' message if true, not if false
 
-  email: '',    // Your Gmail address
+  email: 'simon.mbuthia@gmail.com',    // Your Gmail address
   muteSoft: true, // disable advice printout if it's soft
 
   // You don't have to set your password here, if you leave it blank we will ask it
@@ -250,7 +250,7 @@ config.mailer = {
   // WARNING: If you have NOT downloaded Gekko from the github page above we CANNOT
   // guarantuee that your email address & password are safe!
 
-  password: '',       // Your Gmail Password - if not supplied Gekko will prompt on startup.
+  password: 'etcmdzgulqliqrbx',       // Your Gmail Password - if not supplied Gekko will prompt on startup.
 
   tag: '[GEKKO] ',      // Prefix all email subject lines with this
 
@@ -261,9 +261,9 @@ config.mailer = {
   server: 'smtp.gmail.com',   // The name of YOUR outbound (SMTP) mail server.
   smtpauth: true,     // Does SMTP server require authentication (true for Gmail)
           // The following 3 values default to the Email (above) if left blank
-  user: '',       // Your Email server user name - usually your full Email address 'me@mydomain.com'
-  from: '',       // 'me@mydomain.com'
-  to: '',       // 'me@somedomain.com, me@someotherdomain.com'
+  user: 'tBot',       // Your Email server user name - usually your full Email address 'me@mydomain.com'
+  from: 'simon.mbuthia@gmail.com',       // 'me@mydomain.com'
+  to: 'simon.mbuthia@gmail.com',       // 'me@somedomain.com, me@someotherdomain.com'
   ssl: true,        // Use SSL (true for Gmail)
   port: '',       // Set if you don't want to use the default port
 }
@@ -301,10 +301,10 @@ config.ircbot = {
 }
 
 config.telegrambot = {
-  enabled: false,
-  emitUpdates: false,
-  token: 'YOUR_TELEGRAM_BOT_TOKEN',
-  botName: 'gekkobot'
+  enabled: true,
+  emitUpdates: true,
+  token: '493545829:AAHNmPkVtTDYvM3xWWcQ1Fy-IvspoUGmMkE',
+  botName: 'saichovskybot'
 }
 
 config.twitter = {
