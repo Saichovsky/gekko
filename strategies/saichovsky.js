@@ -72,7 +72,7 @@ strategy.check = function(candle) { // this is where we decide on what to do - b
       log.info(this.previousAction[0].toUpperCase() + this.previousAction.substring(1) + "," + this.stopPrice.toFixed(4) + "," + candle.close.toFixed(4) + "," + this.profitLimit.toFixed(4) + "," + this.pLimits[0].toFixed(4) + "," + this.pLimits[1].toFixed(4));
 
       this.stopLoss.destroy();
-    } 
+    }
   }
   else { // last action was a sell
     const stopLossLimit = settings.stopLossLimit; // stop loss percentage
