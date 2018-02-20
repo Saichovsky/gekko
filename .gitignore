@@ -44,7 +44,7 @@ history
 saichovsky2.js
 .idea
 volumes
-config-*.js
+config*.js
 private-*.js
 private-*.toml
 SECRET-api-keys.json
