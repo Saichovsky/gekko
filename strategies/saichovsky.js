@@ -27,6 +27,8 @@ strategy.init = function() {
 
   this.previousAction = 'sell';
   this.previousActionPrice = Infinity;
+  
+  console.log("If this strategy is of benefit to you, please send me some BTC at 1YfiobTtbfpjn1FCyHY2ofsZ5oYTkKQ8h :-)");
 }
 
 // What happens on every new candle?
