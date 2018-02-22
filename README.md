@@ -26,4 +26,4 @@ Gekko has [a forum](https://forum.gekko.wizb.it/) that is the place for discussi
 
 If Gekko helped you in any way, you can always leave me a tip at (BTC) 13r1jyivitShUiv9FJvjLH7Nh1ZZptumwW
 
-If the Saichovsky strategy helped you, send me (Saichovsky) some BTC at 1YfiobTtbfpjn1FCyHY2ofsZ5oYTkKQ8h :-)
+If the Saichovsky strategy helped you, send me (Saichovsky) some BTC at *1YfiobTtbfpjn1FCyHY2ofsZ5oYTkKQ8h* :-)
